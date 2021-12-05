@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1> We have <strong th:text="${employees.size()}"></strong> employees.</h1>
+    </div>
+    <a th:href="@{/employee/add}"></br>add a new employee </a><br>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <th>index</th>
+    <th>employee Number </th>
+    <th>last name</th>
+    <th>first name</th>
+    <th>job title</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+<tbody>
+<!-- th:each to loop employee-->
+<tr th:each="employee,stats:${employees}">
+    <td th:text="${stats.count}"></td>
+    <td th:text="${employee.employeenumber}"></td>
+    <td th:text="${employee.lastname}"></td>
+    <td th:text="${employee.firstname}"></td>
+    <td th:text="${employee.jobtitle}"></td>
+    <td><a th:href="@{/employee/edit(id=${employee.employeenumber})}">edit</a></td>
+    <td><a th:href="@{/employee/delete(id=${employee.employeenumber})}">delete</a> </td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
